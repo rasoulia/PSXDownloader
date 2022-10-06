@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PSXDLL.BLL\PSXDLL.BLL.csproj" />
+    <ProjectReference Include="..\PSXDLL.Model\PSXDLL.Model.csproj" />
+    <ProjectReference Include="..\PSXDLL.ProxyHelp\PSXDLL.ProxyHelp.csproj" />
+  </ItemGroup>
+
+</Project>

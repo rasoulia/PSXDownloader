@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="PSXDownloader.MVVM.Views.SettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:PSXDownloader.MVVM.Views"
+             xmlns:viewmodel="clr-namespace:PSXDownloader.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodel:SettingViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkButton}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignActionToggleButton}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <DockPanel>
+                <CheckBox IsChecked="{Binding Path=IsAutoFind,UpdateSourceTrigger=PropertyChanged}" Content="AutoFind?" Foreground="#CFCFCF" Margin="5"/>
+                <Button Command="{Binding Path=FilePath}" Content="{materialDesign:PackIcon Kind=Folder}" IsEnabled="{Binding Path=IsAutoFind,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox materialDesign:HintAssist.Hint="Path: " materialDesign:TextFieldAssist.PrefixText="Path: " Text="{Binding Path=LocalFileDirectory,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" IsEnabled="{Binding Path=IsAutoFind,UpdateSourceTrigger=PropertyChanged}"/>
+            </DockPanel>
+            <DockPanel>
+                <TextBox materialDesign:HintAssist.Hint="Rules: " materialDesign:TextFieldAssist.PrefixText="Rules: " Text="{Binding Path=Rule,UpdateSourceTrigger=PropertyChanged}"/>
+            </DockPanel>
+            <Button Command="{Binding Path=SaveSetting}" Content="{materialDesign:PackIcon Kind=ContentSaveSettings}"/>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>
