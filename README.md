@@ -6,7 +6,8 @@ What's New in PSXDownloader_New:
 2. Fix Bug That Cause High CPU Usage After Transfer Complete or Even Connection Closed
 3. Fix Bug That Cause Program Not Respond During Transfer Data or Even Connection Closed
 4. Add Backup / Restore for Database.
-#Bug That Have Right Now is High CPU Usage During Transfer Data.
+
+Bug That Have Right Now is High CPU Usage During Transfer Data.
 
 More Information About Software Licence:
 https://github.com/KOPElan/PSX-Download-Helper
