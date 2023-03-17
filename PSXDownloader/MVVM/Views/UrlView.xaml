@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="PSXDownloader.MVVM.Views.UrlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:PSXDownloader.MVVM.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFilledTextBox}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedDarkButton}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <DockPanel>
+                <Button Command="{Binding Path=Copy,RelativeSource={RelativeSource AncestorType=UserControl}}" Content="{materialDesign:PackIcon Kind=ContentCopy}"/>
+                <TextBox materialDesign:TextFieldAssist.PrefixText="URL: " Text="{Binding Path=Url,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType=UserControl}}" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True"/>
+            </DockPanel>
+            <DockPanel>
+                <Button Command="{Binding Path=Download,RelativeSource={RelativeSource AncestorType=UserControl}}" Content="{materialDesign:PackIcon Kind=Download}"/>
+                <TextBox materialDesign:TextFieldAssist.PrefixText="File Path: " Text="{Binding Path=FilePath,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType=UserControl}}" IsReadOnly="True"/>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

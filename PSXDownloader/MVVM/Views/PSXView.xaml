@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="PSXDownloader.MVVM.Views.PSXView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:PSXDownloader.MVVM.Views"
+             xmlns:viewmodel="clr-namespace:PSXDownloader.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodel:PSXViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkButton}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <UniformGrid Columns="1">
+                <UniformGrid Columns="3">
+                    <TextBox materialDesign:HintAssist.Hint="ID: " materialDesign:TextFieldAssist.PrefixText="ID: " Text="{Binding Path=Game.ID,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <TextBox materialDesign:HintAssist.Hint="Title: " materialDesign:TextFieldAssist.PrefixText="Title: " materialDesign:TextFieldAssist.HasClearButton="True" Text="{Binding Path=Game.Title,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox materialDesign:HintAssist.Hint="TitleID: " materialDesign:TextFieldAssist.PrefixText="TitleID: " materialDesign:TextFieldAssist.HasClearButton="True" Text="{Binding Path=Game.TitleID,UpdateSourceTrigger=PropertyChanged}"/>
+                </UniformGrid>
+                <DockPanel>
+                    <Button Command="{Binding Path=LocalDirectory}" Content="{materialDesign:PackIcon Kind=FolderAdd}"/>
+                    <TextBox materialDesign:HintAssist.Hint="Local Path: " materialDesign:TextFieldAssist.PrefixText="Local Path: " materialDesign:TextFieldAssist.HasClearButton="True" Text="{Binding Path=Game.LocalPath,UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <UniformGrid Columns="9">
+                    <Button Command="{Binding Path=AddGame}" Content="{materialDesign:PackIcon Kind=CreateOutline}"/>
+                    <Button Command="{Binding Path=EditGame}" Content="{materialDesign:PackIcon Kind=Update}"/>
+                    <Button Command="{Binding Path=DeleteGame}" Content="{materialDesign:PackIcon Kind=DeleteOutline}"/>
+                    <Button Command="{Binding Path=BulkGame}" Content="{materialDesign:PackIcon Kind=Add}"/>
+                    <Button Command="{Binding Path=Backup}" Content="{materialDesign:PackIcon Kind=BackupOutline}"/>
+                    <Button Command="{Binding Path=Restore}"  Content="{materialDesign:PackIcon Kind=Restore}"/>
+                </UniformGrid>
+            </UniformGrid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DataGrid ItemsSource="{Binding Path=GameList}" SelectedValue="{Binding Path=Game,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Path=ID,UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Path=Title,UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="TitleID" Binding="{Binding Path=TitleID,UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="LocalPath" Binding="{Binding Path=LocalPath,UpdateSourceTrigger=PropertyChanged}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

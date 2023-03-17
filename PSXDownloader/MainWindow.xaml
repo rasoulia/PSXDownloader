@@ -1,0 +1,61 @@
+﻿<Window x:Class="PSXDownloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:PSXDownloader"
+        xmlns:viewmodel="clr-namespace:PSXDownloader.MVVM.ViewModels"
+        xmlns:view="clr-namespace:PSXDownloader.MVVM.Views"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Background="#252525" WindowState="{Binding Path=WindowState}"
+        Title="PSXDownloader" Height="450" MaxHeight="{Binding Path=MaxHeight}" Width="800" MaxWidth="{Binding Path=MaxWidth}">
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="#7f8fa6"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"  x:Name="TopBorder" MouseLeftButtonDown="TopBorder_MouseLeftButtonDown" Background="Transparent" BorderBrush="LightSlateGray" BorderThickness="0 0 0 2">
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Button Command="{Binding Path=Exit}" Content="{materialDesign:PackIcon Kind=WindowClose}"/>
+                    <Button Command="{Binding Path=Maximize}" Content="{materialDesign:PackIcon Kind=WindowMaximize}"/>
+                    <Button Command="{Binding Path=Minimize}" Content="{materialDesign:PackIcon Kind=WindowMinimize}"/>
+                </StackPanel>
+                <TextBlock Text="PSXDownloader" Foreground="#7f8fa6" FontSize="23" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <TabControl>
+                <TabItem Header="Connect">
+                    <view:ConnectView/>
+                </TabItem>
+                <TabItem Header="Setting">
+                    <view:SettingView/>
+                </TabItem>
+                <TabItem Header="Database">
+                    <view:PSXView/>
+                </TabItem>
+                <TabItem Header="About">
+                    <RichTextBox Grid.Row="1" IsReadOnly="True" Foreground="White" VerticalScrollBarVisibility="Auto" FontSize="20" Margin="5 0">
+                        <FlowDocument>
+                            <Paragraph>Special contribution:</Paragraph>
+                            <Paragraph>CDN加速功能由A9VG会员lucky☆star提出，并提供的CDN主机地址，感谢！英语（English）和葡萄牙语-巴西（Português-Brasil）的本地化（localization）翻译由 Luis F B Ramos 提供，Thanks！</Paragraph>
+                            <Paragraph>Thanks to:</Paragraph>
+                            <Paragraph>zsh，small__d，cyx_kid，lmq_101，zl_m13，qhd_161，cxl_jin，djk_qwb，ozf_134，hz_teq，ncd_faf，gyy_lin，wc_134，Mobilegate，llm_lia，zt_106，周先生（zzy_234），wz_shu，bjj_bao，zys_133，qqpsvita，史莱姆KING，cpf_282，wjs_292，hhs_mrh，wzj_a32，zzq_zha，tczx1420，dxy，zh_kkc，ht_186，lb_gon，pcw_136，zr_fre，pcw_136，yxh_785(3)，lz_fla，mqh_cir，zsy_303，lmy_ste，lg_zkc，qtxs，ljm_584，hym_sma，慕容绮雪，ldr_188，yyb_373，bf_v，lty_jer，ljs_yin，njun，Fernando-G22，wxn_187，pyx_sha，jf_jin，gxy_gua，zf_den，lgs_412，Jef_svg，wch_277，ch_qsc，cwl_che，寂寞的Se彩，KayChang，qjw_mag，ld_rid，LRL_max，longcpa，jf_120，zxd_e_t，player10086，zwq_vin，hl_253，sasah_Wayne，lcc_liu，mhy_sol，fyw_6m7，lyl_171，pc_pan，ljc_726，yy_188，lbh_273，wy_kw6，rlm_ale，dy_max，lyf_734，rx_hah，chubbchubb，zl_zha，xjf_fir，lqc_557，B.K.，jhc_180，zj_ccz，brahma，gwg_gwg，wx_bal，CcRah，zl_186，lsq_527，cha_186，lyx_cla，ddj_don，Alex，cjn_186，hwm_jac，lsm_186，cj_cal，skyrains，cyk_107，Ezioooo，jwr，hw_100，wy_rif，wfz_fan[0479]，yrc，sh_sd3，gxy_tid，lj_642，Albie，xq_ j_l，hyq_qq3，yxt_ly7(2)，bjh_lao，冰溪白狼，BlessEphur，xgh_xie，zyh_102，ly_155，hsz_180，sz_su2，dc_139，qxw_vic，cpf_282，zy_pan，zgj_138，mhx_825，wyp_ffx，ljw_mis，zqs_bmo，xb_sou，nc_173，wb_150，zzy_ hjh，xzl_xio，whr_wha，cf_cf5，whq_mhp，wtc_137，zlc_sna，sf_neo，Flag_Moonlight，ltj_952，ljx_lin，Attack_on_Pig，炎水幻，fyq_186，gqw_gen，wyc_cag，固体蛇，饭团零零一，dzy_acd，hdd，牛尾巴，身殘志堅的大宇，hjj_bbs，xhb_dyh，ql_273，spl_bar，julyzhou，梁宗祎，xio，mwy_che，cx_lew，wjl_dz5，hb_137，Ramy Edward，杨济同，wl_134，FXCarl，zty_137，njw_180，名無しさん，zyy_405，AG，wwy_asa，jzh_jev，wzx，ZZJ，yrx_159，cqy_240，我shi张尼玛，zwx，HaoranSu，hzw_135，lck_157，老鲁，MarshallM，幻影2000X，本拿拿，dy_dyf，xl_dra，lpk_186，sharkermen，SFLion，悟史君，露之石，蟑螂人</Paragraph>
+                            <Paragraph>(Friends who do not have their names will be replaced by their donor names and the top three of their accounts, in no particular order)</Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>

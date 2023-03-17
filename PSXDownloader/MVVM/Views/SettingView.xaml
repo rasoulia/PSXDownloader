@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="PSXDownloader.MVVM.Views.SettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:PSXDownloader.MVVM.Views"
+             xmlns:viewmodel="clr-namespace:PSXDownloader.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodel:SettingViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkButton}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignActionToggleButton}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="#CFCFCF"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <UniformGrid Columns="4">
+                <CheckBox IsChecked="{Binding Path=IsAutoFind,UpdateSourceTrigger=PropertyChanged}" Content="AutoFind?" Foreground="#CFCFCF" Margin="5"/>
+                <ComboBox materialDesign:TextFieldAssist.PrefixText="BufferSize:  " ItemsSource="{Binding Path=BufferList}" SelectedValue="{Binding Path=BufferSize,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                <TextBox materialDesign:HintAssist.Hint="Rules: " materialDesign:TextFieldAssist.PrefixText="Rules: " Text="{Binding Path=Rule,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Command="{Binding Path=SaveSetting}" Content="{materialDesign:PackIcon Kind=ContentSaveSettings}"/>
+            </UniformGrid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
